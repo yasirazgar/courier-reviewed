@@ -1,0 +1,51 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# All passwords => BCrypt::Password.create('PassworD%1')
+ # => "$2a$12$7irMLeKBuVPXnku4fwn0IOdngiyXVXrj/lG263lJGPjhFSlR7X.fC"
+
+yasir:
+  username: yasir
+  email: yasir@carriage.com
+  password_digest: $2a$12$7irMLeKBuVPXnku4fwn0IOdngiyXVXrj/lG263lJGPjhFSlR7X.fC
+  admin: true
+
+azgar:
+  username: Azgar
+  email: azgar@carriage.com
+  password_digest: $2a$12$7irMLeKBuVPXnku4fwn0IOdngiyXVXrj/lG263lJGPjhFSlR7X.fC
+  admin: true
+
+razvi:
+  username: Razvi
+  email: razvi@rainy.com
+  password_digest: $2a$12$7irMLeKBuVPXnku4fwn0IOdngiyXVXrj/lG263lJGPjhFSlR7X.fC
+  admin: false
+
+jhonny:
+  username: Jhonny
+  email: jhonny@jhon.com
+  password_digest: $2a$12$7irMLeKBuVPXnku4fwn0IOdngiyXVXrj/lG263lJGPjhFSlR7X.fC
+  admin: false
+
+abdullah:
+  username: abdullah
+  email: abdullah@kammi.com
+  password_digest: $2a$12$7irMLeKBuVPXnku4fwn0IOdngiyXVXrj/lG263lJGPjhFSlR7X.fC
+  admin: false
+
+canntona:
+  username: canntona
+  email: cannton@eric.com
+  password_digest: $2a$12$7irMLeKBuVPXnku4fwn0IOdngiyXVXrj/lG263lJGPjhFSlR7X.fC
+  admin: false
+
+rooney:
+  username: rooney
+  email: rooney@manu.com
+  password_digest: $2a$12$7irMLeKBuVPXnku4fwn0IOdngiyXVXrj/lG263lJGPjhFSlR7X.fC
+  admin: false
+
+unassiged:
+  username: unassiged_courier
+  email: unassiged@courier.com
+  password_digest: $2a$12$7irMLeKBuVPXnku4fwn0IOdngiyXVXrj/lG263lJGPjhFSlR7X.fC
+  admin: false

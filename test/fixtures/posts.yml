@@ -1,0 +1,43 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+carriage_yasir:
+  user: yasir
+  restaurant: carriage
+  title: Carriage is awesome
+  description: Description justifying why carriage is awesome.
+
+carriage_razvi:
+  user: razvi
+  restaurant: carriage
+  title: Parking issue
+  description: Has parking issues.
+
+aasife_rooney:
+  user: rooney
+  restaurant: aasife
+  title: Aasife hygiene
+  description: Description justifying how carriage maitains good standards of food hygiene.
+
+aasife_abdullah:
+  user: abdullah
+  restaurant: abdullah
+  title: Rude staff
+  description: Rude behaviour by staff.
+
+kfc_jhonny:
+  user: jhonny
+  restaurant: jhonny
+  title: unhygienic food
+  description: Serves old and unhygienic food
+
+kfc_rooney:
+  user: rooney
+  restaurant: kfc
+  title: Spacious
+  description: Has spacious parking and dining space.
+
+no_comments_kfc_rooney:
+  user: rooney
+  restaurant: kfc
+  title: Some boring title
+  description: Some boring description

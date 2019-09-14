@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+carriage:
+  name: Carriage
+  creator: yasir
+  couriers: yasir, razvi, jhonny, canntona, rooney
+
+aasife:
+  name: Aasife
+  creator: azgar
+  couriers: azgar, abdullah, canntona, rooney
+
+kfc:
+  name: KFC
+  creator: yasir
+  couriers: abdullah, canntona, rooney, razvi
+
+no_couriers:
+  name: No couriers
+  creator: yasir
+  couriers:

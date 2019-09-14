@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+carriage_yasir_rooney:
+  user: rooney
+  post: carriage_yasir
+  body: Yes, everything is awesome.
+carriage_razvi_yasir:
+  user: yasir
+  post: carriage_razvi
+  body: They are trying to find an alternative space nearby.
+aasife_rooney_jhonny:
+  user: jhonny
+  post: aasife_rooney
+  body: Agree, but there are few issues as well.
+aasife_abdullah_rooney:
+  user: rooney
+  post: aasife_abdullah
+  body: Yeah everything look clean.
+kfc_jhonny_razvi:
+  user: razvi
+  post: kfc_jhonny
+  body: I do not think so.
+kfc_rooney_abdullah:
+  user: abdullah
+  post: kfc_rooney
+  body: Agree.
+no_replies_kfc_rooney_azgar:
+  user: azgar
+  post: kfc_rooney
