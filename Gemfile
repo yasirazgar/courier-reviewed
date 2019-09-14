@@ -15,6 +15,8 @@ gem 'puma', '~> 3.11'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+# json web token, for authentication
+gem 'jwt', require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
