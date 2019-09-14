@@ -2,8 +2,8 @@ require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
   test "validations" do
-    user = users(:one)
-    post = posts(:one)
+    user = users(:yasir)
+    post = posts(:carriage_yasir)
     body = 'I Agree'
 
     required_attrs = {
@@ -24,9 +24,9 @@ class CommentTest < ActiveSupport::TestCase
   end
 
   test "dependent destroy - replies" do
-    comment = comments(:one)
+    comment = comments(:carriage_yasir_rooney)
 
-    assert_not_empty comment.replies, "Should have replies"
+    assert_not_empty(comment.replies, "Should have replies")
 
     comment.destroy
     assert_empty(
@@ -35,16 +35,16 @@ class CommentTest < ActiveSupport::TestCase
   end
 
   test "counter_cache - replies_count" do
-    comment = comments(:one)
-    user = users(:one)
-    old_count = 3
-    new_count = 4
+    comment = comments(:carriage_yasir_rooney)
+    user = users(:yasir)
+    old_count = 1
+    new_count = 2
 
     assert_equal(
-      comment.replies.size, old_count,
+      old_count, comment.replies.size,
       "Should have #{old_count} replies size")
     assert_equal(
-      comment.replies_count, old_count,
+      old_count, comment.replies_count,
       "Should have #{old_count} replies_count")
 
     reply_attrs = {
@@ -52,9 +52,9 @@ class CommentTest < ActiveSupport::TestCase
       user: user,
       body: "I agree"
     }
-    comment.replies << Comment.create(reply_attrs)
+    comment.replies << Reply.create(reply_attrs)
     assert_equal(
-      comment.replies_count, new_count,
+      new_count, comment.replies_count,
       "Should update replies_count to #{new_count}")
   end
 end

@@ -4,26 +4,54 @@ carriage_yasir_rooney:
   user: rooney
   post: carriage_yasir
   body: Yes, everything is awesome.
-carriage_razvi_yasir:
+  replies_count: 1
+carriage_yasir_abdullah:
+  user: abdullah
+  post: carriage_yasir
+  body: Yeah
+  replies_count: 1
+carriage_razvi_yasir1:
   user: yasir
   post: carriage_razvi
   body: They are trying to find an alternative space nearby.
+  replies_count: 2
+carriage_razvi_yasir2:
+  user: yasir
+  post: carriage_razvi
+  body: New parking space.
+  replies_count: 1
 aasife_rooney_jhonny:
   user: jhonny
   post: aasife_rooney
   body: Agree, but there are few issues as well.
+  replies_count: 1
 aasife_abdullah_rooney:
   user: rooney
   post: aasife_abdullah
   body: Yeah everything look clean.
+  replies_count: 1
 kfc_jhonny_razvi:
   user: razvi
   post: kfc_jhonny
   body: I do not think so.
+  replies_count: 1
 kfc_rooney_abdullah:
   user: abdullah
   post: kfc_rooney
   body: Agree.
+  replies_count: 1
+kfc_rooney_razvi:
+  user: razvi
+  post: kfc_rooney
+  body: BS
+  replies_count: 0
+kfc_rooney_jhonny:
+  user: jhonny
+  post: kfc_rooney
+  body: hmmmm.
+  replies_count: 0
 no_replies_kfc_rooney_azgar:
   user: azgar
   post: kfc_rooney
+  body: my comment has no reply
+  replies_count: 0

@@ -17,11 +17,16 @@ class RestaurantTest < ActiveSupport::TestCase
   end
 
   test "has_and_belongs_to_many :couriers" do
-    restaurant = restaurants(:one)
+    restaurant = restaurants(:carriage)
 
     assert_equal(
-      restaurant.couriers,
-      [],
+      [
+        users(:yasir),
+        users(:razvi),
+        users(:jhonny),
+        users(:canntona),
+        users(:rooney)
+      ], restaurant.couriers,
       "Should return all assinged couriers")
   end
 end

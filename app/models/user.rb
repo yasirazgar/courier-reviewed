@@ -16,7 +16,7 @@ class User < ApplicationRecord
             class_name: 'Restaurant',
             inverse_of: :creator
   has_and_belongs_to_many :restaurants,
-                          join_table: 'ResturantCouriers'
+                          join_table: 'restaurants_users'
   has_many :posts
   has_many :comments
   has_many :replies

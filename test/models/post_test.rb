@@ -2,8 +2,8 @@ require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
   test "validations" do
-    user = users(:one)
-    restaurant = restaurants(:one)
+    user = users(:yasir)
+    restaurant = restaurants(:carriage)
     title = 'Carriage is awesome'
     desc = 'Carriage is awesome'
     required_attrs = {
@@ -27,9 +27,9 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "dependent destroy - comments" do
-    post = posts(:one)
+    post = posts(:carriage_yasir)
 
-    assert_not_empty post.comments, "Should have comments"
+    assert_not_empty(post.comments, "Should have comments")
 
     post.destroy
     assert_empty(
@@ -38,16 +38,16 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "counter_cache - comments_count" do
-    post = posts(:one)
-    user = users(:one)
-    old_count = 3
-    new_count = 4
+    post = posts(:carriage_yasir)
+    user = users(:yasir)
+    old_count = 2
+    new_count = 3
 
     assert_equal(
-      post.comments.size, old_count,
+      old_count, post.comments.size,
       "Should have #{old_count} comments size")
     assert_equal(
-      post.comments_count, old_count,
+      old_count, post.comments_count,
       "Should have #{old_count} comments_count")
 
     comment_attrs = {
@@ -62,10 +62,16 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "default order is comments_count desc" do
-    restaurant = restaurants(:one)
-    posts_by_comments_count = [
+    restaurant = restaurants(:kfc)
+    posts_ordered_by_comments_count = [
+      posts(:kfc_rooney),
+      posts(:kfc_jhonny),
+      posts(:no_comments_kfc_rooney),
     ]
 
-    assert_equal(restaurant.posts, posts_by_comments_count, "Should order by comments_count desc")
+    assert_equal(
+      posts_ordered_by_comments_count,
+      restaurant.posts,
+      "Should order by comments_count desc")
   end
 end

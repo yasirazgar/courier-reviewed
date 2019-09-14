@@ -5,39 +5,46 @@ carriage_yasir:
   restaurant: carriage
   title: Carriage is awesome
   description: Description justifying why carriage is awesome.
+  comments_count: 2
 
 carriage_razvi:
   user: razvi
   restaurant: carriage
   title: Parking issue
   description: Has parking issues.
+  comments_count: 2
 
 aasife_rooney:
   user: rooney
   restaurant: aasife
   title: Aasife hygiene
   description: Description justifying how carriage maitains good standards of food hygiene.
+  comments_count: 1
 
 aasife_abdullah:
   user: abdullah
   restaurant: abdullah
   title: Rude staff
   description: Rude behaviour by staff.
+  comments_count: 1
 
 kfc_jhonny:
   user: jhonny
-  restaurant: jhonny
+  restaurant: kfc
   title: unhygienic food
   description: Serves old and unhygienic food
+  comments_count: 1
 
 kfc_rooney:
   user: rooney
   restaurant: kfc
   title: Spacious
   description: Has spacious parking and dining space.
+  comments_count: 3
 
 no_comments_kfc_rooney:
   user: rooney
   restaurant: kfc
   title: Some boring title
   description: Some boring description
+  comments_count: 0

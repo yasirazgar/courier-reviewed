@@ -14,8 +14,10 @@ class Restaurant < ApplicationRecord
               foreign_key: 'user_id'
   has_and_belongs_to_many :couriers,
                           class_name: 'User',
-                          join_table: 'ResturantCouriers'
-  has_many :posts
+                          join_table: 'restaurants_users'
+  has_many :posts , -> {
+              order(comments_count: :desc)
+            }
 
   validates :name, presence: true
 end
