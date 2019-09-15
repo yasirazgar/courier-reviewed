@@ -31,5 +31,10 @@
 
 en:
   authentication:
-    success: Authentication successful
-    failure: Authentication failed
+    success: Authentication successful.
+    failure: Authentication failed.
+  user:
+    create:
+      success: User created successfully.
+      failure: User creation failed.
+
