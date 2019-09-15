@@ -5,6 +5,14 @@ Rails.application.routes.draw do
 
     namespace :admin do
       resources :users, only: :create
+      resources :restaurants, only: [] do
+        resources :couriers, only: [] do
+          member do
+            patch :assign
+            patch :unassign
+          end
+        end
+      end
     end
   end
 end

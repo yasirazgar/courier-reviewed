@@ -30,6 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  authorization:
+    not_allowed: Not allowed
   authentication:
     success: Authentication successful.
     failure: Authentication failed.
@@ -37,4 +39,15 @@ en:
     create:
       success: User created successfully.
       failure: User creation failed.
+  courier:
+    assign:
+      success: Courier assigned to restaurant successfully.
+      failure:
+        duplicate: Courier is already assigned to the specified restaurant.
+    unassign:
+      success: Courier unassigned from the restaurant successfully.
+      failure:
+        not_found: Courier cannot be found inside specified restaurant.
+
+
 
