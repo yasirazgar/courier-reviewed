@@ -24,4 +24,12 @@ module RequestsHelper
   def token_for_user(user)
     "Bearer #{JsonWebToken.encode(user_id: user.id)}"
   end
+
+  def assert_access_forbidden
+    assert_response :forbidden
+    assert_equal(
+      I18n.t('authorization.not_allowed'),
+      json_response['error']['message'],
+      "Should set authorization failure message")
+  end
 end

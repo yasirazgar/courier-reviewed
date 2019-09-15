@@ -10,7 +10,13 @@ class V1::CouriersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "non_admin-assign-to_unauthorized_restaurant" do
-    CourierCreationService.any_instance.expects(:assign_restaurant).never
+    json_patch(@assign_url, @courier)
+
+    assert_access_forbidden
+  end
+
+  test "no admin unassign-to_unauthorized-restaurant" do
+    CourierCreationService.any_instance.expects(:unassign_restaurant).never
 
     json_patch(@assign_url, @courier)
 
@@ -35,14 +41,6 @@ class V1::CouriersControllerTest < ActionDispatch::IntegrationTest
     assert_assign(:conflict, I18n.t('courier.assign.failure.duplicate'))
   end
 
-  test "no admin unassign-to_unauthorized-restaurant" do
-    CourierCreationService.any_instance.expects(:unassign_restaurant).never
-
-    json_patch(@assign_url, @courier)
-
-    assert_access_forbidden
-  end
-
   test "non admin unassign to authorized restaurant" do
     logged_in_user = users(:jhonny)
 
@@ -62,14 +60,6 @@ class V1::CouriersControllerTest < ActionDispatch::IntegrationTest
   end
 
   private
-
-  def assert_access_forbidden
-    assert_response :forbidden
-    assert_equal(
-      I18n.t('authorization.not_allowed'),
-      json_response['error']['message'],
-      "Should set authorization failure message")
-  end
 
   def assert_assign(status, message)
     service_mock = mock
