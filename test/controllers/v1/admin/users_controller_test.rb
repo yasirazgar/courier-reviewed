@@ -11,7 +11,7 @@ class V1::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
       }
     }
     assert_difference('User.count', 1) do
-      json_post(:v1_admin_users_url, params, yasir)
+      json_post(:v1_admin_users_url, yasir, params)
       assert_response :success
     end
     assert_equal(
@@ -29,7 +29,7 @@ class V1::Admin::UsersControllerTest < ActionDispatch::IntegrationTest
       }
     }
     assert_difference('User.count', 0) do
-      json_post(:v1_admin_users_url, params, yasir)
+      json_post(:v1_admin_users_url, yasir, params)
       assert_response :unprocessable_entity
     end
     assert_equal(

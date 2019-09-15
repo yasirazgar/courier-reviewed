@@ -16,7 +16,7 @@ class V1::AuthenticationController < ApplicationController
     else
       render json: {
         error: I18n.t('authentication.failure')
-      }, status: 404
+      }, status: 401
     end
   end
 end

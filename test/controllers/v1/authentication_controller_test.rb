@@ -30,7 +30,7 @@ class V1::AuthenticationControllerTest < ActionDispatch::IntegrationTest
 
     post(v1_login_url(format: :json), params: params)
 
-    assert_response :not_found
+    assert_response :unauthorized
 
     assert_equal({
         'error' => I18n.t('authentication.failure')
