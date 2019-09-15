@@ -24,12 +24,30 @@ class UserTest < ActiveSupport::TestCase
       "Should not be valid, when email is duplicate")
   end
 
-  test "has_and_belongs_to_many :restaurants" do
+  test "created_restaurants" do
+    user = users(:yasir)
+
+    assert_equal(
+      [restaurants(:kfc), restaurants(:carriage), restaurants(:no_couriers)],
+      user.created_restaurants,
+      "Should return all assinged restaurants")
+  end
+
+  test "has_and_belongs_to_many-joined_restaurants" do
     user = users(:abdullah)
 
     assert_equal(
-      user.restaurants,
       [restaurants(:aasife), restaurants(:kfc)],
+      user.joined_restaurants,
       "Should return all assinged restaurants")
+  end
+
+  test "restaurants" do
+    user = users(:abdullah)
+
+    assert_equal(
+      [restaurants(:aasife), restaurants(:kfc)],
+      user.restaurants,
+      "Should return all assinged restaurants order based on posts_count")
   end
 end

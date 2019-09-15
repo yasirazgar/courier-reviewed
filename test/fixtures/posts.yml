@@ -21,12 +21,26 @@ aasife_rooney:
   description: Description justifying how carriage maitains good standards of food hygiene.
   comments_count: 1
 
-aasife_abdullah:
+aasife_abdullah1:
   user: abdullah
-  restaurant: abdullah
+  restaurant: aasife
   title: Rude staff
   description: Rude behaviour by staff.
   comments_count: 1
+
+aasife_abdullah2:
+  user: abdullah
+  restaurant: aasife
+  title: Bad staff
+  description: Bad behaviour by staff.
+  comments_count: 0
+
+aasife_abdullah3:
+  user: abdullah
+  restaurant: aasife
+  title: No staff
+  description: No staff.
+  comments_count: 0
 
 kfc_jhonny:
   user: jhonny

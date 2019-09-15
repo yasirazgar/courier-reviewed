@@ -3,19 +3,23 @@
 carriage:
   name: Carriage
   creator: yasir
-  couriers: yasir, razvi, jhonny, canntona, rooney
+  couriers: yasir, azgar, razvi, jhonny, canntona, rooney
+  posts_count: 2
 
 aasife:
   name: Aasife
   creator: azgar
   couriers: azgar, abdullah, canntona, rooney
+  posts_count: 4
 
 kfc:
   name: KFC
   creator: yasir
   couriers: abdullah, canntona, rooney, razvi
+  posts_count: 3
 
 no_couriers:
   name: No couriers
   creator: yasir
   couriers:
+  posts_count: 0

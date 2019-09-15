@@ -6,9 +6,6 @@ class V1::AdminController < ApplicationController
   def require_admin_access
     return true if @current_user.admin?
 
-    render(:json => {
-        :error => {:message => I18n.t('authorization.not_allowed')}
-      },
-      :status => 403)
+    render_unauthorized
   end
 end

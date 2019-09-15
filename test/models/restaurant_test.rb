@@ -22,6 +22,7 @@ class RestaurantTest < ActiveSupport::TestCase
     assert_equal(
       [
         users(:yasir),
+        users(:azgar),
         users(:razvi),
         users(:jhonny),
         users(:canntona),

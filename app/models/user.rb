@@ -12,15 +12,29 @@
 class User < ApplicationRecord
   has_secure_password
 
-  has_many :created_restaurants,
+  has_many :created_restaurants, -> {
+              order(posts_count: :desc)
+            },
             class_name: 'Restaurant',
             inverse_of: :creator
-  has_and_belongs_to_many :restaurants,
+
+  has_and_belongs_to_many :joined_restaurants, -> {
+                            order(posts_count: :desc)
+                          },
+                          class_name: 'Restaurant',
                           join_table: 'restaurants_users'
+
   has_many :posts
   has_many :comments
   has_many :replies
 
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true
+
+  def restaurants
+    Restaurant
+      .where(id: joined_restaurants.select(:id))
+      .or(Restaurant.where(user_id: id))
+      .order('posts_count DESC')
+  end
 end

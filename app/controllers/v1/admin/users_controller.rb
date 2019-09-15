@@ -5,10 +5,11 @@ class V1::Admin::UsersController < V1::AdminController
     if user.errors.blank?
       data = { message: I18n.t('user.create.success') }
       render json: data
-    else
-      data = { message: I18n.t('user.create.failure') }
-      render json: data, status: :unprocessable_entity
+      return
     end
+
+    data = { message: I18n.t('user.create.failure') }
+    render json: data, status: :unprocessable_entity
   end
 
   private

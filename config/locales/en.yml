@@ -48,6 +48,18 @@ en:
       success: Courier unassigned from the restaurant successfully.
       failure:
         not_found: Courier cannot be found inside specified restaurant.
+  restaurant:
+    create:
+      success: Restaurant created successfully.
+      failure: Error creating restaurant.
+    update:
+      success: Restaurant updated successfully.
+      failure: Error updating restaurant.
+    destroy:
+      success: Restaurant destroyed successfully.
+      failure: Error destroying restaurant.
+
+
 
 
 

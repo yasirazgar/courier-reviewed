@@ -9,13 +9,13 @@ class CourierCreationService
   end
 
   def assign_restaurant(restaurant)
-    if @courier.restaurants.exists?(restaurant.id)
+    if @courier.joined_restaurants.exists?(restaurant.id)
       @errors << I18n.t('courier.assign.failure.duplicate')
       @http_status = :conlict
       return [@http_status, @errors.join(', ')]
     end
 
-    @courier.restaurants << restaurant
+    @courier.joined_restaurants << restaurant
     @success_message = I18n.t('courier.assign.success')
     @http_status = :ok
 
@@ -23,8 +23,8 @@ class CourierCreationService
   end
 
   def unassign_restaurant(restaurant)
-    if @courier.restaurants.exists?(restaurant.id)
-      @courier.restaurants.delete(restaurant)
+    if @courier.joined_restaurants.exists?(restaurant.id)
+      @courier.joined_restaurants.delete(restaurant)
       @http_status = :ok
       @success_message = I18n.t('courier.unassign.success')
       return [@http_status, @success_message]

@@ -17,8 +17,18 @@ courier5 = User.create(username: 'billie', email: 'billie@carriage.com', passwor
 courier6 = User.create(username: 'shafi', email: 'shafi@carriage.com', password: password)
 
 restaurant1 = Restaurant.create(name: 'Carriage', creator: admin1)
+restaurant1.couriers << admin1
+restaurant1.couriers << courier1
+restaurant1.couriers << courier2
+restaurant1.couriers << admin2
 restaurant2 = Restaurant.create(name: 'AAsife', creator: admin2)
+restaurant2.couriers << admin2
+restaurant2.couriers << courier3
+restaurant2.couriers << courier4
 restaurant3 = Restaurant.create(name: 'KFC', creator: admin1)
+restaurant3.couriers << courier5
+restaurant3.couriers << courier6
+restaurant3.couriers << courier1
 
 description = <<-DESC
 This is a lengthy description can be review or just explaining something that was interesting or something that a
