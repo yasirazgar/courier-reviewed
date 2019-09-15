@@ -17,7 +17,8 @@ class Restaurant < ApplicationRecord
                           join_table: 'restaurants_users'
   has_many :posts , -> {
               order(comments_count: :desc)
-            }
+            },
+            dependent: :destroy
 
   validates :name, presence: true
 end

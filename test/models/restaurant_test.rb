@@ -29,4 +29,18 @@ class RestaurantTest < ActiveSupport::TestCase
       ], restaurant.couriers,
       "Should return all assinged couriers")
   end
+
+  test "dependent destroy - posts" do
+    restaurant = restaurants(:carriage)
+
+    assert_not_empty(restaurant.posts, "Should have posts")
+
+    assert_difference("Post.count", -2, "Delete associated posts") do
+      assert_difference("Comment.count", -4, "post associated comments") do
+        assert_difference("Reply.count", -5, "comment associated replies") do
+          restaurant.destroy
+        end
+      end
+    end
+  end
 end
