@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::API
   before_action :authenticate_request
 
+  def render_unauthorized
+    render(:json => {
+        :error => {:message => I18n.t('authorization.not_allowed')}
+      },
+      :status => 403)
+  end
+
   private
 
   def authenticate_request

@@ -1,17 +1,16 @@
 require 'test_helper'
 
-class AdminServiceTest < ActiveSupport::TestCase
-  test "assign_restaurant_to_courier-success" do
-    admin = users(:yasir)
-    service = AdminService.new(admin)
+class CourierCreationServiceTest < ActiveSupport::TestCase
+  test "assign_restaurant-success" do
     abdullah = users(:abdullah)
+    service = CourierCreationService.new(abdullah)
     restaurant = restaurants(:carriage)
 
     assert(
       !restaurant.couriers.exists?(abdullah.id),
       "Should not be already linked to the restaurant")
 
-    result = service.assign_restaurant_to_courier(restaurant, abdullah)
+    result = service.assign_restaurant(restaurant)
 
     assert(
       restaurant.couriers.exists?(abdullah.id),
@@ -22,22 +21,22 @@ class AdminServiceTest < ActiveSupport::TestCase
       service.success_message,
       "Should set success message")
     assert(service.errors.blank?, "Should have no errors")
-    assert_equal(:success, service.http_status, "Should be success")
-    assert_equal([:success, I18n.t('courier.assign.success')],
+    assert_equal(:ok, service.http_status, "Should be success")
+    assert_equal([:ok, I18n.t('courier.assign.success')],
       result,
       "Should return the http_status and success_message")
   end
 
-  test "assign_restaurant_to_courier-already_linked-failure" do
-    admin = users(:yasir)
-    service = AdminService.new(admin)
+  test "assign_restaurant-already_linked-failure" do
+    yasir = users(:yasir)
+    service = CourierCreationService.new(yasir)
     restaurant = restaurants(:carriage)
 
     assert(
-      restaurant.couriers.exists?(admin.id),
+      restaurant.couriers.exists?(yasir.id),
       "Should be already linked to the restaurant")
 
-    result = service.assign_restaurant_to_courier(restaurant, admin)
+    result = service.assign_restaurant(restaurant)
 
     assert_equal(
       [I18n.t('courier.assign.failure.duplicate')],
@@ -50,19 +49,19 @@ class AdminServiceTest < ActiveSupport::TestCase
       "Should return the http_status and error_messages")
   end
 
-  test "unassign_restaurant_to_courier-success" do
-    admin = users(:yasir)
-    service = AdminService.new(admin)
+  test "unassign_restaurant-success" do
+    yasir = users(:yasir)
+    service = CourierCreationService.new(yasir)
     restaurant = restaurants(:carriage)
 
     assert(
-      restaurant.couriers.exists?(admin.id),
+      restaurant.couriers.exists?(yasir.id),
       "Should be already linked to the restaurant")
 
-    result = service.unassign_restaurant_to_courier(restaurant, admin)
+    result = service.unassign_restaurant(restaurant)
 
     assert(
-      !restaurant.couriers.exists?(admin.id),
+      !restaurant.couriers.exists?(yasir.id),
       "Should be unlinked from the restaurant")
 
     assert_equal(
@@ -70,23 +69,22 @@ class AdminServiceTest < ActiveSupport::TestCase
       service.success_message,
       "Should set success message")
     assert(service.errors.blank?, "Should have no errors")
-    assert_equal(:success, service.http_status, "Should be success")
-    assert_equal([:success, I18n.t('courier.unassign.success')],
+    assert_equal(:ok, service.http_status, "Should be success")
+    assert_equal([:ok, I18n.t('courier.unassign.success')],
       result,
       "Should return the http_status and success_message")
   end
 
-  test "unassign_restaurant_to_courier-not_linked-failure" do
-    admin = users(:yasir)
+  test "unassign_restaurant-not_linked-failure" do
     abdullah = users(:abdullah)
-    service = AdminService.new(admin)
+    service = CourierCreationService.new(abdullah)
     restaurant = restaurants(:carriage)
 
     assert(
       !restaurant.couriers.exists?(abdullah.id),
       "Should not be already linked to the restaurant")
 
-    result = service.unassign_restaurant_to_courier(restaurant, abdullah)
+    result = service.unassign_restaurant(restaurant)
 
     assert_equal(
       [I18n.t('courier.unassign.failure.not_found')],
