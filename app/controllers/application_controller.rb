@@ -1,3 +1,5 @@
+require 'json_web_token'
+
 class ApplicationController < ActionController::API
   before_action :authenticate_request
   after_action :setup_page_headers
@@ -21,7 +23,7 @@ class ApplicationController < ActionController::API
 
   def authenticate_request
     unless current_user
-      render json: { error: 'Not Authorized' }, status: 401
+      render json: { error: I18n.t('authentication.failure') }, status: 401
     end
   end
 
