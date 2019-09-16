@@ -15,6 +15,7 @@ class Restaurant < ApplicationRecord
   has_and_belongs_to_many :couriers,
                           class_name: 'User',
                           join_table: 'restaurants_users'
+  # TODO: Improvement, Add starts/ratings options and order by stars/ratings counts
   has_many :posts , -> {
               order(comments_count: :desc)
             },

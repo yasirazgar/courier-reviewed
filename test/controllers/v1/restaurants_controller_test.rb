@@ -13,15 +13,19 @@ class V1::RestaurantsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal(response_index_admin, json_response['restaurants'],
       "Should return both assigned and created restaurants ordered by posts counts")
+
+    assert_pagination_headers(2)
   end
 
   test "index-with_courier" do
-    json_get(v1_restaurants_url(format: :json), @rooney)
+    json_get(v1_restaurants_url(format: :json, limit: 2), @rooney)
 
     assert_response :success
 
     assert_equal(response_index_non_admin, json_response['restaurants'],
       "Should return assigned restaurants ordered by posts count")
+
+    assert_pagination_headers(3)
   end
 
   test "show-unauthorized_courier" do
@@ -31,11 +35,14 @@ class V1::RestaurantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "show" do
-    json_get(v1_restaurant_url(@restaurant, format: :json), @azgar)
+    json_get(v1_restaurant_url(@restaurant, format: :json, limit: 2), @azgar)
 
     assert_response :success
 
-    assert_equal(response_show, json_response['posts'])
+    assert_equal(response_show, json_response['posts'],
+      "Should show posts in restaurants ordered by posts_count")
+
+    assert_pagination_headers(4)
   end
 
   private
@@ -45,7 +52,7 @@ class V1::RestaurantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   def response_index_non_admin
-    map_restaurants([@restaurant, restaurants(:kfc), restaurants(:carriage)])
+    map_restaurants([@restaurant, restaurants(:kfc)])
   end
 
   def map_restaurants(restaurants)
@@ -57,9 +64,7 @@ class V1::RestaurantsControllerTest < ActionDispatch::IntegrationTest
   def response_show
     [
       posts(:aasife_rooney),
-      posts(:aasife_abdullah1),
-      posts(:aasife_abdullah2),
-      posts(:aasife_abdullah3)
+      posts(:aasife_abdullah1)
     ].map do |post|
       [post.id, post.title, post.description]
     end

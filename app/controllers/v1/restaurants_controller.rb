@@ -4,14 +4,22 @@ class V1::RestaurantsController < ApplicationController
                    }, except: :index
 
   def index
-    restaurants = current_user.restaurants.pluck(:id, :name)
+    @paginator = Paginator.new(current_user.restaurants, params, :v1_restaurants_url)
+
+    restaurants = @paginator.paginate.pluck(:id, :name)
 
     render(json: { restaurants: restaurants })
   end
 
   def show
-    posts = @restaurant.posts.pluck(:id, :title, :description)
+    @paginator = Paginator.new(@restaurant.posts, params, :v1_restaurant_url)
 
+    posts = @paginator.paginate.pluck(:id, :title, :description)
+
+    data = {
+      restaurant: @restaurant.name,
+      posts: posts
+    }
     render(json: {posts: posts})
   end
 
