@@ -1,0 +1,92 @@
+To access all the end points
+Login and get the jwt and set it to the header with key 'Authorization' in the format "Bearer #{jwt}"
+Eg: Bearer asdfasdf89798709asdff
+
+Pagination keys 
+limit => page_limit
+page => page
+Links for first, next, prev and last pages are available in response headers.
+
+Created a simple end point for creating a user
+
+POST   /v1/admin/users.json
+require_params = { "user":{ "username": "Yash3", "email": "yash3@carriage.com", "password": "passworD@1" } }
+response = { "message": "User created successfully." }
+
+
+POST   /v1/login.json
+required_params = {"email":"yasir@carriage.com", "password": "PassworD@55"}
+response {"user":{"username":"yasir","email":"yasir@carriage.com"},"jwt":"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzEyNDk5Nzd9.ej1-cLsFefR02-etL-lBtv2Yu8F2ek7SVTdm4HUgVYQ","message":"Authentication successful."}
+
+POST   /v1/restaurants/:restaurant_id/posts.json
+required_params = {"post":{ "title": "Post title", "description": "Post description" }}
+response = {"id":11,"message":"Post created successfully."}
+
+PATCH  /v1/restaurants/:restaurant_id/couriers/:id/assign.json
+response = {"message":"Courier assigned to restaurant successfully."}
+
+PATCH  /v1/restaurants/:restaurant_id/couriers/:id/unassign.json
+response = {"message":"Courier unassigned from the restaurant successfully."}
+
+GET    /v1/restaurants.json - paginated
+response = {"restaurants":[[1,"Carriage"],[3,"KFC"]]}
+response_desc = {"restaurants": [[restaurant.id,restaurant.name]]}
+
+GET    /v1/restaurants/:id.json - paginated posts
+response_desc = {"restaurant": restaurant_name, posts: [[post_id, post.title, post.description]]}
+
+GET    /v1/posts/:post_id/comments.json - paginated
+response_desc = {"comments": [[comment.id, comment.user.id, comment.body]]]}
+
+POST   /v1/posts/:post_id/comments.json
+required_params = {"comment":{ "body": "Post title"}}
+response = { "id": 21, "message": "comment created successfully."}
+
+GET    /v1/posts.json - paginated
+response_desc = {"posts": [[post.id, restaurant.name, post.title, post.description]] }
+            
+GET    /v1/posts/:id.json - limited to first three comments
+response_desc = {"post": [post.title, post.description], comments: [[comment.id, user.id, comment.body]] }
+
+PATCH  /v1/posts/:id.json
+PUT    /v1/posts/:id.json
+required_params = { "post": { "title": "New title", "description": "New description" } }
+response = { "message": "Post updated successfully." }
+
+DELETE /v1/posts/:id.json
+response = { "message": "Post destroyed successfully." }
+
+POST   /v1/comments/:comment_id/replies.json
+require_params = { "id": 61, "message": "Reply created successfully." }
+response = { "id": 61, "message": "Reply created successfully." }
+
+GET    /v1/comments/:id.json - paginated replies
+response = { "comment": "I agree", "replies": [ [reply.id, reply.user.id, reply.body ] ]}
+            
+PATCH  /v1/comments/:id.json
+PUT    /v1/comments/:id.json
+required_param = { "comment": { "body": "New title" } }
+response = { "message": "comment updated successfully." }
+
+DELETE /v1/comments/:id.json
+response = { "message": "comment destroyed successfully."}
+
+PATCH  /v1/replies/:id.json
+PUT    /v1/replies/:id.json
+required_params = { "reply": { "body": "New title" } }
+response = { "message": "Reply updated successfully." }
+
+DELETE /v1/replies/:id.json
+required_params = { "restaurant":{ "name": "Restaurant" } }
+response = { "message": "Reply destroyed successfully." }
+
+POST   /v1/admin/restaurants.json
+response = {"id": 6, "message": "Restaurant created successfully."}
+
+PATCH  /v1/admin/restaurants/:id.json
+PUT    /v1/admin/restaurants/:id.json
+required_params = { "restaurant":{ "name": "KFC" } }
+response = { "message": "Restaurant updated successfully." }
+
+DELETE /v1/admin/restaurants/:id.json
+response = { "message": "Restaurant destroyed successfully." }
