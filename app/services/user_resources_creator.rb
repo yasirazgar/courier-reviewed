@@ -28,4 +28,11 @@ class UserResourcesCreator
       reply.save
     end
   end
+
+  def create_restaurant(params)
+    Restaurant.new(params).tap do |restaurant|
+      restaurant.user_id = @user.id
+      restaurant.save
+    end
+  end
 end

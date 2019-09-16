@@ -70,14 +70,24 @@ en:
       failure: Error destroying post.
   comment:
     create:
-      success: comment created successfully.
+      success: Comment created successfully.
       failure: Error creating comment.
     update:
-      success: comment updated successfully.
+      success: Comment updated successfully.
       failure: Error updating comment.
     destroy:
-      success: comment destroyed successfully.
+      success: Comment destroyed successfully.
       failure: Error destroying comment.
+  reply:
+    create:
+      success: Reply created successfully.
+      failure: Error creating reply.
+    update:
+      success: Reply updated successfully.
+      failure: Error updating reply.
+    destroy:
+      success: Reply destroyed successfully.
+      failure: Error destroying reply.
 
 
 

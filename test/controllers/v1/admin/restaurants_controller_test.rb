@@ -64,8 +64,7 @@ class V1::Admin::RestaurantsControllerTest < ActionDispatch::IntegrationTest
   def create_params
     params = {
       restaurant:{
-        name: 'New Restaurant',
-        user_id: @yasir.id,
+        name: 'New Restaurant'
       }
     }
   end

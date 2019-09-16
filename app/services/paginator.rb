@@ -11,11 +11,11 @@ class Paginator
     @params = format_params(params)
     @url = url
 
+    @total_count = relation.size
     @limit = get_limit
+    @total_pages = @last_page = (@total_count.to_f / @limit.to_f).ceil
     @page = get_page
     @first_page = DEFAULT_PAGE
-    @total_count = relation.size
-    @total_pages = @last_page = (@total_count.to_f / @page.to_f).ceil
     @next_page = next_page
     @prev_page = prev_page
     @offset = (@page -1) * @limit
@@ -105,6 +105,6 @@ class Paginator
   def get_page
     page = @params[:page].to_i
 
-    (page <= 0) ? DEFAULT_PAGE : page
+    ((page <= 0) || page > @total_pages) ? DEFAULT_PAGE : page
   end
 end

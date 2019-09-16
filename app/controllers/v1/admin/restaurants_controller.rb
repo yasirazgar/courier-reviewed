@@ -2,7 +2,7 @@ class V1::Admin::RestaurantsController < V1::AdminController
   before_action :set_restaurant, only: [:update, :destroy]
 
   def create
-    restaurant = Restaurant.create(create_params)
+    restaurant = UserResourcesCreator.new(current_user, nil).create_restaurant(create_params)
 
     if restaurant.errors.present?
       errors = restaurant.errors.full_messages.join(', ')
@@ -43,6 +43,6 @@ class V1::Admin::RestaurantsController < V1::AdminController
   end
 
   def create_params
-    params.require(:restaurant).permit(:name, :user_id)
+    params.require(:restaurant).permit(:name)
   end
 end

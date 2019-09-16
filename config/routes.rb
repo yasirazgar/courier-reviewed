@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
     namespace :admin do
       resources :users, only: :create
-      resources :restaurants, only: [:index, :create, :update, :destroy]
+      resources :restaurants, only: [:create, :update, :destroy]
     end
   end
 end
