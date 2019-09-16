@@ -12,6 +12,8 @@
 #     "index_posts_on_user_id" btree (user_id)
 
 class Post < ApplicationRecord
+  COMMENTS_COUNT_TO_DISPLAY = 3
+
   belongs_to :user
   belongs_to :restaurant
   has_many :comments, dependent: :destroy

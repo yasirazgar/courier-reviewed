@@ -58,6 +58,16 @@ en:
     destroy:
       success: Restaurant destroyed successfully.
       failure: Error destroying restaurant.
+  post:
+    create:
+      success: Post created successfully.
+      failure: Error creating post.
+    update:
+      success: Post updated successfully.
+      failure: Error updating post.
+    destroy:
+      success: Post destroyed successfully.
+      failure: Error destroying post.
 
 
 

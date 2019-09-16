@@ -65,7 +65,7 @@ class PostTest < ActiveSupport::TestCase
     restaurant = restaurants(:kfc)
     posts_ordered_by_comments_count = [
       posts(:kfc_rooney),
-      posts(:kfc_jhonny),
+      posts(:kfc_canntona),
       posts(:no_comments_kfc_rooney),
     ]
 

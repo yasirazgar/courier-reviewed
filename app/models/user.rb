@@ -24,13 +24,14 @@ class User < ApplicationRecord
                           class_name: 'Restaurant',
                           join_table: 'restaurants_users'
 
-  has_many :posts
+  has_many :posts, -> { order(comments_count: :desc) }
   has_many :comments
   has_many :replies
 
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true
 
+  # TODO: Improvement, Add starts/ratings to posts and order restaurants by stars/ratings counts
   def restaurants
     Restaurant
       .where(id: joined_restaurants.select(:id))

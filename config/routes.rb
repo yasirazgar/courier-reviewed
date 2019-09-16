@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     post "login", to: "authentication#create", as: "login"
 
     resources :restaurants, only: [:index, :show] do
+      resources :posts, only: [:create]
       resources :couriers, only: [] do
         member do
           patch :assign
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
         end
       end
     end
+    resources :comments, except: [:index, :create]
 
     namespace :admin do
       resources :users, only: :create
