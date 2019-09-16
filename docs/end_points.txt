@@ -18,6 +18,16 @@ Admin          - email => yasir@carriage.com;  password => 'PassworD@55'
 Courier/Member - email => jhonny@carriage.com; password => 'PassworD@55'
 Refer seed file for more.
 
+On accessing an unauthorized/unpermitted endpoint for a certain user without permission,
+will result in, staus 403, Forbidden.
+{
+    "error": {
+        "message": "Not allowed"
+    }
+}
+
+
+
 POST   /v1/login.json
 required_params = {"email":"yasir@carriage.com", "password": "PassworD@55"}
 response {"user":{"username":"yasir","email":"yasir@carriage.com"},"jwt":"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzEyNDk5Nzd9.ej1-cLsFefR02-etL-lBtv2Yu8F2ek7SVTdm4HUgVYQ","message":"Authentication successful."}
