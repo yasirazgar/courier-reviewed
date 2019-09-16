@@ -68,6 +68,16 @@ en:
     destroy:
       success: Post destroyed successfully.
       failure: Error destroying post.
+  comment:
+    create:
+      success: comment created successfully.
+      failure: Error creating comment.
+    update:
+      success: comment updated successfully.
+      failure: Error updating comment.
+    destroy:
+      success: comment destroyed successfully.
+      failure: Error destroying comment.
 
 
 

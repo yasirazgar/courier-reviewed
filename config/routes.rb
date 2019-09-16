@@ -12,6 +12,9 @@ Rails.application.routes.draw do
         end
       end
     end
+    resources :posts, except: [:edit, :create] do
+      resources :comments, only: [:index, :create]
+    end
     resources :comments, except: [:index, :create]
 
     namespace :admin do

@@ -12,4 +12,12 @@ class UserResourcesCreator
       post.save
     end
   end
+
+  def create_comment(params)
+    Comment.new(params).tap do |comment|
+      comment.user = @user
+      comment.post = @resource
+      comment.save
+    end
+  end
 end
