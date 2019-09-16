@@ -13,6 +13,10 @@ POST   /v1/admin/users.json
 require_params = { "user":{ "username": "Yash3", "email": "yash3@carriage.com", "password": "passworD@1" } }
 response = { "message": "User created successfully." }
 
+Available users
+Admin          - email => yasir@carriage.com;  password => 'PassworD@55'
+Courier/Member - email => jhonny@carriage.com; password => 'PassworD@55'
+Refer seed file for more.
 
 POST   /v1/login.json
 required_params = {"email":"yasir@carriage.com", "password": "PassworD@55"}

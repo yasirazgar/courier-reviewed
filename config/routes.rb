@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: "v1/couriers#index"
   namespace :v1, format: true, constraints: { :format => 'json' }, defaults: { format: :json } do
+
+    resources :couriers, only: [:index] # just to list all the users
+
     post "login", to: "authentication#create", as: "login"
 
     resources :restaurants, only: [:index, :show] do

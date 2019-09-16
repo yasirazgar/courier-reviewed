@@ -1,7 +1,14 @@
 class V1::CouriersController < ApplicationController
-  before_action :set_courier, :set_restaurant, :set_authorizer
-  before_action -> { render_unauthorized unless @authorizer.can_access_restaurant? }
-  before_action :set_service
+  before_action :set_courier, :set_restaurant, :set_authorizer, except: :index
+  before_action -> { render_unauthorized unless @authorizer.can_access_restaurant? }, except: :index
+  before_action :set_service, except: :index
+
+  skip_before_action :authenticate_request, only: :index
+  # Open the sample route
+  def index
+    render json: { users: User.pluck(:email, :admin), password: 'PassworD@55' }
+  end
+
 
   def assign
     status, message = @service.assign_restaurant(@restaurant)
