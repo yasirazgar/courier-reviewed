@@ -20,7 +20,7 @@ class V1::RestaurantsController < ApplicationController
       restaurant: @restaurant.name,
       posts: posts
     }
-    render(json: {posts: posts})
+    render(json: data)
   end
 
   private

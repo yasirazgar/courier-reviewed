@@ -39,7 +39,7 @@ class V1::RestaurantsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
 
-    assert_equal(response_show, json_response['posts'],
+    assert_equal(response_show, json_response,
       "Should show posts in restaurants ordered by posts_count")
 
     assert_pagination_headers(4)
@@ -62,11 +62,16 @@ class V1::RestaurantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   def response_show
-    [
+    posts = [
       posts(:aasife_rooney),
       posts(:aasife_abdullah1)
     ].map do |post|
       [post.id, post.title, post.description]
     end
+
+    {
+      'restaurant' => @restaurant.name,
+      'posts' => posts
+    }
   end
 end
