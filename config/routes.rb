@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  namespace :v1, :format => true, :constraints => { :format => 'json' } do
+  namespace :v1, format: true, constraints: { :format => 'json' }, defaults: { format: :json } do
     post "login", to: "authentication#create", as: "login"
 
     resources :restaurants, only: [:index, :show] do
@@ -15,7 +15,11 @@ Rails.application.routes.draw do
     resources :posts, except: [:edit, :create] do
       resources :comments, only: [:index, :create]
     end
-    resources :comments, except: [:index, :create]
+
+    resources :comments, except: [:index, :create] do
+      resources :replies, only: :create
+    end
+    resources :replies, only: [:update, :destroy]
 
     namespace :admin do
       resources :users, only: :create

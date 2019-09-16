@@ -26,4 +26,8 @@ class Authorizer
     (@user.admin? && @user.created_restaurants.exists?(@resource.restaurant.id))
   end
 
+  def can_edit_reply?
+    (@resource.user_id == @user.id) ||
+    (@user.admin? && @user.created_restaurants.exists?(@resource.restaurant.id))
+  end
 end

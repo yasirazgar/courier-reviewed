@@ -2,7 +2,6 @@ require 'test_helper'
 
 class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @rooney = users(:rooney)
     @admin = users(:azgar)
     @unauthorized = users(:jhonny)
     @post = posts(:kfc_rooney)

@@ -44,15 +44,27 @@ aasife_abdullah_rooney_azgar:
   comment: aasife_abdullah_rooney
   user: azgar
   body: Thats nice.
-kfc_jhonny_razvi_jhonny:
-  comment: kfc_jhonny_razvi
-  user: jhonny
+kfc_canntona_razvi_canntona:
+  comment: kfc_canntona_razvi
+  user: canntona
   body: :(
-kfc_jhonny_razvi_abdullah:
-  comment: kfc_jhonny_razvi
+kfc_canntona_razvi_abdullah:
+  comment: kfc_canntona_razvi
   user: abdullah
   body: bad
 kfc_rooney_abdullah_rooney:
   comment: kfc_rooney_abdullah
   user: rooney
   body: Yes I guess.
+kfc_rooney_canntona_abdullah1:
+  comment: kfc_rooney_canntona
+  user: abdullah
+  body: I hope so.
+kfc_rooney_canntona_abdullah2:
+  comment: kfc_rooney_canntona
+  user: abdullah
+  body: Lets hope for the best.
+kfc_rooney_canntona_yasir:
+  comment: kfc_rooney_canntona
+  user: yasir
+  body: Yeah.
