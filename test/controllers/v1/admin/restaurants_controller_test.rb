@@ -38,13 +38,13 @@ class V1::Admin::RestaurantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "update admin-access" do
-    json_patch(v1_admin_restaurant_url(@restaurant, format: :json), users(:jhonny))
+    json_patch(v1_admin_restaurant_url(@restaurant), users(:jhonny))
     assert_access_forbidden
   end
 
   test "update-success" do
     params = update_params
-    json_patch(v1_admin_restaurant_url(@restaurant, format: :json), @yasir, params)
+    json_patch(v1_admin_restaurant_url(@restaurant), @yasir, params)
 
     assert_equal(
       params[:restaurant][:name],
@@ -56,7 +56,7 @@ class V1::Admin::RestaurantsControllerTest < ActionDispatch::IntegrationTest
   test "update-failure" do
     params = update_params
     params[:name] = nil
-    json_patch(v1_admin_restaurant_url(@restaurant, format: :json), @yasir, params)
+    json_patch(v1_admin_restaurant_url(@restaurant), @yasir, params)
 
     assert(@restaurant.reload.name, "Should not update name")
   end

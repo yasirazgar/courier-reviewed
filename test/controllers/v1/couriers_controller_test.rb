@@ -5,8 +5,8 @@ class V1::CouriersControllerTest < ActionDispatch::IntegrationTest
     @admin = users(:yasir)
     @courier = users(:abdullah)
     @restaurant = restaurants(:carriage)
-    @assign_url = assign_v1_restaurant_courier_url(@restaurant.id, @courier.id, format: :json)
-    @unassign_url = unassign_v1_restaurant_courier_url(@restaurant.id, @courier.id, format: :json)
+    @assign_url = assign_v1_restaurant_courier_url(@restaurant.id, @courier.id)
+    @unassign_url = unassign_v1_restaurant_courier_url(@restaurant.id, @courier.id)
   end
 
   test "non_admin-assign-to_unauthorized_restaurant" do

@@ -10,7 +10,7 @@ class V1::RepliesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "create-unauthorized_fails" do
-    json_post(v1_comment_replies_url(@comment, format: :json), @unauthorized, create_params)
+    json_post(v1_comment_replies_url(@comment), @unauthorized, create_params)
 
     assert_access_forbidden
   end
@@ -27,25 +27,25 @@ class V1::RepliesControllerTest < ActionDispatch::IntegrationTest
     params = create_params
     params[:reply][:body] = nil
     assert_difference('Reply.count', 0) do
-      json_post(v1_comment_replies_url(@comment, format: :json), @reply_creator, params)
+      json_post(v1_comment_replies_url(@comment), @reply_creator, params)
       assert_response :bad_request
     end
   end
 
   test "update-unauthorized" do
-    json_patch(v1_reply_url(@reply, format: :json), @unauthorized)
+    json_patch(v1_reply_url(@reply), @unauthorized)
 
     assert_access_forbidden
   end
 
   test "update-unaccessible_restaurant_is_unauthorized_to_admin" do
-    json_patch(v1_reply_url(@reply, format: :json), @admin)
+    json_patch(v1_reply_url(@reply), @admin)
 
     assert_access_forbidden
   end
 
   test "update-authorized_non_admin_success" do
-    json_patch(v1_reply_url(@reply, format: :json), @reply_creator, update_params)
+    json_patch(v1_reply_url(@reply), @reply_creator, update_params)
     assert_response :success
 
     assert_equal(
@@ -57,25 +57,25 @@ class V1::RepliesControllerTest < ActionDispatch::IntegrationTest
     params = update_params
     params[:reply][:body] = nil
 
-    json_patch(v1_reply_url(@reply, format: :json), @reply_creator, params)
+    json_patch(v1_reply_url(@reply), @reply_creator, params)
     assert_response :bad_request
   end
 
   test "destroy-unauthorized" do
-    json_delete(v1_reply_url(@reply, format: :json), @unauthorized)
+    json_delete(v1_reply_url(@reply), @unauthorized)
 
     assert_access_forbidden
   end
 
   test "destroy-unaccessible_restaurant_is_unauthorized_to_admin" do
-    json_delete(v1_reply_url(@reply, format: :json), @unauthorized)
+    json_delete(v1_reply_url(@reply), @unauthorized)
 
     assert_access_forbidden
   end
 
   test "destroy-authorized_non_admin" do
     assert_difference('Reply.count', -1) do
-      json_delete(v1_reply_url(@reply, format: :json), @reply_creator)
+      json_delete(v1_reply_url(@reply), @reply_creator)
     end
   end
 
@@ -92,7 +92,7 @@ class V1::RepliesControllerTest < ActionDispatch::IntegrationTest
   def assert_create_success(user)
     assert_difference('Reply.count', 1) do
       assert_difference('@comment.replies.count', 1) do
-        json_post(v1_comment_replies_url(@comment, format: :json), user, create_params)
+        json_post(v1_comment_replies_url(@comment), user, create_params)
         assert_response :success
         assert_not_nil(json_response['id'], "Should set created reply id")
         assert_equal(

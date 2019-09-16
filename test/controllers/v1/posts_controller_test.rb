@@ -20,25 +20,25 @@ class V1::PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "show-unauthorized" do
-    json_get(v1_post_url(@post, format: :json), @unauthorized)
+    json_get(v1_post_url(@post), @unauthorized)
 
     assert_access_forbidden
   end
 
   test "show-unaccessible_restaurant_is_authorized_to_admin" do
-    json_get(v1_post_url(@post, format: :json), @admin)
+    json_get(v1_post_url(@post), @admin)
 
     assert_show_success
   end
 
   test "show-authorized_non_admin" do
-    json_get(v1_post_url(@post, format: :json), @rooney)
+    json_get(v1_post_url(@post), @rooney)
 
     assert_show_success
   end
 
   test "create-unauthorized_fails" do
-    json_post(v1_restaurant_posts_url(@restaurant, format: :json), @unauthorized, create_params)
+    json_post(v1_restaurant_posts_url(@restaurant), @unauthorized, create_params)
 
     assert_access_forbidden
   end
@@ -56,25 +56,25 @@ class V1::PostsControllerTest < ActionDispatch::IntegrationTest
     params[:post][:title] = nil
 
     assert_difference('Post.count', 0) do
-      json_post(v1_restaurant_posts_url(@restaurant, format: :json), @rooney, params)
+      json_post(v1_restaurant_posts_url(@restaurant), @rooney, params)
       assert_response :bad_request
     end
   end
 
   test "update-unauthorized" do
-    json_patch(v1_post_url(@post, format: :json), @unauthorized)
+    json_patch(v1_post_url(@post), @unauthorized)
 
     assert_access_forbidden
   end
 
   test "update-unaccessible_restaurant_is_unauthorized_to_admin" do
-    json_patch(v1_post_url(@post, format: :json), @admin)
+    json_patch(v1_post_url(@post), @admin)
 
     assert_access_forbidden
   end
 
   test "update-authorized_non_admin" do
-    json_patch(v1_post_url(@post, format: :json), @rooney, update_params)
+    json_patch(v1_post_url(@post), @rooney, update_params)
     assert_response :success
 
     assert_equal(
@@ -86,26 +86,26 @@ class V1::PostsControllerTest < ActionDispatch::IntegrationTest
     params = update_params
     params[:post][:title] = nil
 
-    json_patch(v1_post_url(@post, format: :json), @rooney, params)
+    json_patch(v1_post_url(@post), @rooney, params)
 
     assert_response :bad_request
   end
 
   test "destroy-unauthorized" do
-    json_delete(v1_post_url(@post, format: :json), @unauthorized)
+    json_delete(v1_post_url(@post), @unauthorized)
 
     assert_access_forbidden
   end
 
   test "destroy-unaccessible_restaurant_is_unauthorized_to_admin" do
-    json_delete(v1_post_url(@post, format: :json), @unauthorized)
+    json_delete(v1_post_url(@post), @unauthorized)
 
     assert_access_forbidden
   end
 
   test "destroy-authorized_non_admin" do
     assert_difference('Post.count', -1) do
-      json_delete(v1_post_url(@post, format: :json), @rooney)
+      json_delete(v1_post_url(@post), @rooney)
     end
   end
 
@@ -150,7 +150,7 @@ class V1::PostsControllerTest < ActionDispatch::IntegrationTest
   def assert_create_success(user)
     assert_difference('Post.count', 1) do
       assert_difference('@restaurant.posts.count', 1) do
-        json_post(v1_restaurant_posts_url(@restaurant, format: :json), user, create_params)
+        json_post(v1_restaurant_posts_url(@restaurant), user, create_params)
         assert_response :success
         assert_not_nil(json_response['id'], "Should set created post id")
         assert_equal(

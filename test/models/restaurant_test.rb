@@ -28,7 +28,7 @@ class RestaurantTest < ActiveSupport::TestCase
         users(:canntona),
         users(:rooney)
       ], restaurant.couriers,
-      "Should return all assinged couriers")
+      "Should return all asinged couriers")
   end
 
   test "dependent destroy - posts" do
@@ -38,7 +38,7 @@ class RestaurantTest < ActiveSupport::TestCase
 
     assert_difference("Post.count", -2, "Delete associated posts") do
       assert_difference("Comment.count", -4, "post associated comments") do
-        assert_difference("Reply.count", -5, "comment associated replies") do
+        assert_difference("Reply.count", -4, "comment associated replies") do
           restaurant.destroy
         end
       end

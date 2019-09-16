@@ -29,13 +29,13 @@ class V1::RestaurantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "show-unauthorized_courier" do
-    json_get(v1_restaurant_url(@restaurant, format: :json), users(:razvi))
+    json_get(v1_restaurant_url(@restaurant), users(:razvi))
 
     assert_access_forbidden
   end
 
   test "show" do
-    json_get(v1_restaurant_url(@restaurant, format: :json, limit: 2), @azgar)
+    json_get(v1_restaurant_url(@restaurant, limit: 2), @azgar)
 
     assert_response :success
 

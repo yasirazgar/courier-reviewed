@@ -20,27 +20,27 @@ class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "show-unauthorized" do
-    json_get(v1_comment_url(@comment, format: :json), @unauthorized)
+    json_get(v1_comment_url(@comment), @unauthorized)
 
     assert_access_forbidden
   end
 
   test "show-unaccessible_restaurant_is_authorized_to_admin" do
-    json_get(v1_comment_url(@comment, format: :json), @admin)
+    json_get(v1_comment_url(@comment), @admin)
 
     assert_show_success
     assert_pagination_headers(3)
   end
 
   test "show-authorized_non_admin" do
-    json_get(v1_comment_url(@comment, format: :json), @comment_creator)
+    json_get(v1_comment_url(@comment), @comment_creator)
 
     assert_show_success
     assert_pagination_headers(3)
   end
 
   test "create-unauthorized_fails" do
-    json_post(v1_post_comments_url(@post, format: :json), @unauthorized, create_params)
+    json_post(v1_post_comments_url(@post), @unauthorized, create_params)
 
     assert_access_forbidden
   end
@@ -57,25 +57,25 @@ class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
     params = create_params
     params[:comment][:body] = nil
     assert_difference('Comment.count', 0) do
-      json_post(v1_post_comments_url(@post, format: :json), @comment_creator, params)
+      json_post(v1_post_comments_url(@post), @comment_creator, params)
       assert_response :bad_request
     end
   end
 
   test "update-unauthorized" do
-    json_patch(v1_comment_url(@comment, format: :json), @unauthorized)
+    json_patch(v1_comment_url(@comment), @unauthorized)
 
     assert_access_forbidden
   end
 
   test "update-unaccessible_restaurant_is_unauthorized_to_admin" do
-    json_patch(v1_comment_url(@comment, format: :json), @admin)
+    json_patch(v1_comment_url(@comment), @admin)
 
     assert_access_forbidden
   end
 
   test "update-authorized_non_admin_success" do
-    json_patch(v1_comment_url(@comment, format: :json), @comment_creator, update_params)
+    json_patch(v1_comment_url(@comment), @comment_creator, update_params)
     assert_response :success
 
     assert_equal(
@@ -87,25 +87,25 @@ class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
     params = update_params
     params[:comment][:body] = nil
 
-    json_patch(v1_comment_url(@comment, format: :json), @comment_creator, params)
+    json_patch(v1_comment_url(@comment), @comment_creator, params)
     assert_response :bad_request
   end
 
   test "destroy-unauthorized" do
-    json_delete(v1_comment_url(@comment, format: :json), @unauthorized)
+    json_delete(v1_comment_url(@comment), @unauthorized)
 
     assert_access_forbidden
   end
 
   test "destroy-unaccessible_restaurant_is_unauthorized_to_admin" do
-    json_delete(v1_comment_url(@comment, format: :json), @unauthorized)
+    json_delete(v1_comment_url(@comment), @unauthorized)
 
     assert_access_forbidden
   end
 
   test "destroy-authorized_non_admin" do
     assert_difference('Comment.count', -1) do
-      json_delete(v1_comment_url(@comment, format: :json), @comment_creator)
+      json_delete(v1_comment_url(@comment), @comment_creator)
     end
   end
 
@@ -149,7 +149,7 @@ class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
   def assert_create_success(user)
     assert_difference('Comment.count', 1) do
       assert_difference('@post.comments.count', 1) do
-        json_post(v1_post_comments_url(@post, format: :json), user, create_params)
+        json_post(v1_post_comments_url(@post), user, create_params)
         assert_response :success
         assert_not_nil(json_response['id'], "Should set created comment id")
         assert_equal(
