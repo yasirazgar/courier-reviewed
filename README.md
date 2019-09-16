@@ -37,10 +37,12 @@ Login and get the jwt and set it to the header with key 'Authorization' in the f
 Eg: Bearer asdfasdf89798709asdff
 
 
-**Pagination keys **
+**Pagination keys**
 
 limit => page_limit
+
 page => page
+
 Links for first, next, prev and last pages are available in response headers.
 
 **Also Created a simple end point for creating a user**
