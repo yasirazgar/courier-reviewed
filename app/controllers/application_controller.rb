@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   before_action :authenticate_request
+  after_action :setup_page_headers
 
   def render_unauthorized
     render(:json => {
@@ -9,6 +10,14 @@ class ApplicationController < ActionController::API
   end
 
   private
+
+  def setup_page_headers
+    return unless @paginator
+
+    headers['Link'] = @paginator.header_links
+    headers['Total'] = @paginator.total_count
+    headers['Current-Page'] = @paginator.page
+  end
 
   def authenticate_request
     unless current_user
